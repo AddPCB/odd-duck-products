@@ -109,18 +109,70 @@ function handleClick(event) {
   }
 }
 
+// function renderResults() {
+//   const resultsList = document.getElementById("resultsText");
+//   let ul = document.createElement("ul");
+//   ul.setAttribute("id", "listStart");
+//   resultsList.appendChild(ul);
+//   const listStart = document.getElementById("listStart");
+//   for (let i = 0; i < Product.allProducts.length; i++) {
+//     let theProduct = Product.allProducts[i];
+//     let li = document.createElement("li");
+
+//     li.textContent = `${theProduct.name}: ${theProduct.clicks} clicks ${theProduct.views} views`;
+//     listStart.appendChild(li);
+//   }
+// }
+
 function renderResults() {
-  const resultsList = document.getElementById("resultsText");
-  let ul = document.createElement("ul");
-  ul.setAttribute("id", "listStart");
-  resultsList.appendChild(ul);
-  const listStart = document.getElementById("listStart");
+  const resultsText = document.getElementById("resultsText");
+  let canvas = document.createElement("canvas");
+  canvas.setAttribute("id", "resultsChart");
+  resultsText.appendChild(canvas);
+  const resultsChart = document.getElementById("resultsChart");
   for (let i = 0; i < Product.allProducts.length; i++) {
     let theProduct = Product.allProducts[i];
-    let li = document.createElement("li");
-
-    li.textContent = `${theProduct.name}: ${theProduct.clicks} clicks ${theProduct.views} views`;
-    listStart.appendChild(li);
+    new Chart(resultsChart, {
+      type: "bar",
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
+      },
+      title :{
+        text: "Results Chart"
+    },
+    axisY:[
+        {
+            title: "Times Clicked"
+        },
+        {
+            title: "Times viewed"
+        }
+    ],
+      axisX:[
+      {
+        title: "Product Name"
+      }
+    ],
+    data: [{
+        type: "line",
+        axisYIndex: 0, //defaults to 0
+        dataPoints : [
+            { label: `${theProduct.name}`,  y: `${theProduct.clicks}` }
+        ]
+        },
+        {
+        type: "column",
+        axisYIndex: 1,
+        dataPoints : [
+          { label: `${theProduct.name}`,  y: `${theProduct.views}` }
+        ]
+        }
+    ]
+});
   }
 }
 
