@@ -1,0 +1,103 @@
+* {
+  box-sizing: border-box;
+}
+/* Set up grid layout */
+body {
+  display: grid;
+  width: 1024px;
+  height: 100vh;
+  margin: 3rem auto;
+  font-family: monospace;
+  background-color:midnightblue;
+  color: white;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr 5fr 5fr 1fr;
+}
+header {
+  grid-area: 1 / 1 / 1 / 5;
+  background-color:#333333;
+  display:flex;
+}
+main {
+  grid-area: 2 / 2 / 4 / 5;
+  background-color:#555555;
+  display:flex;
+}
+aside {
+  grid-area: 2 / 1 / 4 / 2;
+  background-color:#777777;
+  display:flex;
+}
+footer {
+    grid-area: 4 / 1 / 5 / 5;
+    background-color:#111111;
+    display:flex;
+    justify-content:center;
+}
+/* set up flex layout for header container */
+header container#title {
+  display:flex;
+  flex-direction: row;
+  flex-grow:1;
+  justify-content:space-between;
+}
+/*include title image */
+header container#title item#logoImage {
+  background: url("assets/logo.png") center no-repeat;
+  background-size: contain;
+  width: 200px;
+  height: 70px;
+}
+/* justify title */
+header container#title item#titleText {
+  margin:auto;
+    }
+/* set up flex layout for main article */
+main article#products {
+  display:flex;
+  flex-grow:1;
+  flex-direction: column;
+  align-content:space-between;
+  justify-content:space-between;
+  margin:0.5em;
+}
+/* set up flex layout for product images */
+main article#products section#productImages {
+  display:flex;
+  flex-direction: row;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:auto;
+  flex-grow:0;
+}
+/* add template product images */
+main article#products section#productImages item.productImage {
+  background: url("https://place-hold.it/250x250/000000/ffffff/999999.png&text=250x250-product&fontsize=16")
+    center no-repeat;
+  background-size: contain;
+  width:250px;
+  height:250px;
+  resize:none;
+}
+main article#products section#productImages item.productImage *{
+  width:250px;
+  height:250px;
+}
+main article#products section#fillGap {
+flex-grow:1;
+}
+/* set up flex layout for aside container */
+aside container#results {
+  display:flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content:flex-start;
+  margin:0.5em;
+}
+/* set up flex layout for footer container */
+aside container#contact {
+  display:flex;
+  flex-direction: row;
+  align-items:center;
+  justify-content:space-between;
+}
